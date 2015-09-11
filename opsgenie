@@ -21,7 +21,7 @@ LOGFILE_ERR="${LOGFILE}"
 # this can be useful for debugging
 #env > /tmp/opsgenie.notify.env
 
-[[ -n "${NOTIFY_WHAT}" ]] && { "error: environment not set"; exit; }
+[[ -n "${NOTIFY_WHAT}" ]] && { echo "error: environment variable NOTIFY_WHAT not set" >>$LOGFILE; exit; }
 
 # these are just commands copied from the example nagios contact config from opsgenie, modified to use the correct variables
 if [[ "$NOTIFY_WHAT" == "HOST" ]]; then
