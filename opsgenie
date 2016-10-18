@@ -21,6 +21,16 @@ LOGFILE_ERR="${LOGFILE}"
 # this can be useful for debugging
 #env > /tmp/opsgenie.notify.env
 
+function print_usage {
+  cat <<EOF
+Usage: ${0} [-h|-r|-t|-T]
+  -h   Print Usage
+  -r   Set recipient(s)
+  -t   Set teams
+  -T   Set tags
+EOF
+}
+
 opts=""
 recipient=""
 teams=""
