@@ -15,8 +15,10 @@
 # * https://mathias-kettner.de/checkmk_flexible_notifications.html
 # * http://www.opsgenie.com/docs/integrations/nagios/rich-integration
 
-LOGFILE="/var/log/opsgenie/nagios2opsgenie.log"
+LOGFILE="${OMD_ROOT:-}/var/log/opsgenie/nagios2opsgenie.log"
 LOGFILE_ERR="${LOGFILE}"
+
+[[ -d $( dirname ${LOGFILE} ) ]] || mkdir -p $( dirname ${LOGFILE} )
 
 # this can be useful for debugging
 #env > /tmp/opsgenie.notify.env
