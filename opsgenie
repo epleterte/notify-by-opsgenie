@@ -58,6 +58,22 @@ shift $(($OPTIND-1))
 
 [[ -z "${NOTIFY_WHAT}" ]] && { echo "error: environment variable NOTIFY_WHAT not set" >>$LOGFILE; exit; }
 
+# OK, parse arguments from WATO - if set, use as only source
+[[ "${NOTIFY_PARAMETERS:-}" == "" ]] || opts=""
+for param in ${NOTIFY_PARAMETERS:-}; do
+  case ${param} in
+    "recipient:"*)
+      opts+=" -recipients=${param##*:} "
+    ;;
+    "tags:"*)
+      opts+=" -tags=${param##*:} "
+    ;;
+    "teams:"*)
+      opts+=" -teams=${param##*:} "
+    ;;
+  esac
+done
+
 # these are just commands copied from the example nagios contact config from opsgenie, modified to use the correct variables
 if [[ "$NOTIFY_WHAT" == "HOST" ]]; then
     nagios2opsgenie -entityType=host \
