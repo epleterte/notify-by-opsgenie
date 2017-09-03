@@ -22,7 +22,7 @@ The Nagios (OMD) user needs to be able to write to the log. We need the log to b
     chmod g+w /var/log/opsgenie/nagios2opsgenie.log
 
     # if the file does not exist yet, you can do this
-    ( cd /va/log/opsgenie && touch nagios2opsgenie.log && chown opsgenie:opsgenie nagios2opsgenie.log && chmod 664 nagios2opsgenie.log )
+    ( cd /var/log/opsgenie && touch nagios2opsgenie.log && chown opsgenie:opsgenie nagios2opsgenie.log && chmod 664 nagios2opsgenie.log )
 
 Usage
 -----
