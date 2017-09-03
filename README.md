@@ -6,7 +6,7 @@ A dead simple Opsgenie notification script for Check_MK Flexible Notifications
 Installation
 ------------
 
-Put the script somewhere the nagios/monitoring user can reach. Ensure the script is executable. 
+Put the script somewhere the nagios/monitoring user can reach. Ensure the script is executable.  
 If you run OMD you drop this script in _${OMD\_ROOT}/local/share/check\_mk/notifications/_
 
 Next, add the user that will run the notification script to the _opsgenie_ group. With OMD this is the site user/name:
