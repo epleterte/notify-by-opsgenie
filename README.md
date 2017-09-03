@@ -9,6 +9,10 @@ Installation
 Put the script somewhere the nagios/monitoring user can reach. Ensure the script is executable.  
 If you run OMD you drop this script in _${OMD\_ROOT}/local/share/check\_mk/notifications/_
 
+    git clone https://github.com/epleterte/notify-by-opsgenie.git
+    cp notify-by-opsgenie/opsgenie /omd/sites/<site>/local/share/check_mk/notifications/
+    chown <omd user>:<omd group> /omd/sites/<site>/local/share/check_mk/notifications/opsgenie
+
 Next, add the user that will run the notification script to the _opsgenie_ group. With OMD this is the site user/name:
 
     gpasswd -a <omd user> opsgenie
