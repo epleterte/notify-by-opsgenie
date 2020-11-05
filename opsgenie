@@ -76,7 +76,7 @@ done
 
 # these are just commands copied from the example nagios contact config from opsgenie, modified to use the correct variables
 if [[ "$NOTIFY_WHAT" == "HOST" ]]; then
-    nagios2opsgenie -entityType=host \
+    send2opsgenie -entityType=host \
       -t="$NOTIFY_NOTIFICATIONTYPE" \
       -ldt="$NOTIFY_LONGDATETIME" \
       -hn="$NOTIFY_HOSTNAME" \
@@ -112,7 +112,7 @@ if [[ "$NOTIFY_WHAT" == "HOST" ]]; then
       -hpd="$NOTIFY_HOSTPERFDATA" \
       ${opts} 1>>"${LOGFILE}" 2>>"${LOGFILE_ERR}"
 elif [[ "${NOTIFY_WHAT}" == "SERVICE" ]]; then
-    nagios2opsgenie -entityType=service \
+    send2opsgenie -entityType=service \
       -t="$NOTIFY_NOTIFICATIONTYPE" \
       -ldt="$NOTIFY_LONGDATETIME" \
       -hn="$NOTIFY_HOSTNAME" \
