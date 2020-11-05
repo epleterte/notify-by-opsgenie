@@ -18,7 +18,7 @@
 LOGFILE="${OMD_ROOT:-}/var/log/opsgenie/nagios2opsgenie.log"
 LOGFILE_ERR="${LOGFILE}"
 
-[[ -d $( dirname ${LOGFILE} ) ]] || mkdir -p $( dirname ${LOGFILE} )
+[[ -d $( dirname ${LOGFILE} ) ]] || mkdir -p $( dirname ${LOGFILE} ) || { echo "[ error ] Could not create log dir - bailing"; exit 1; }
 
 # this can be useful for debugging
 #env > /tmp/opsgenie.notify.env
@@ -27,14 +27,14 @@ function print_usage {
   cat <<EOF
 Usage: ${0} [-h|-r|-t|-T]
   -h   Print Usage
-  -r   Set recipient(s)
+  -r   Set responder(s)
   -t   Set teams
   -T   Set tags
 EOF
 }
 
 opts=""
-recipient=""
+responders=""
 teams=""
 tags=""
 while getopts hr:t:T: o
@@ -43,8 +43,8 @@ do
     h)
       print_usage ; exit ;;
     r)
-      recipient="$OPTARG"
-      opts+=" -recipients=${recipient} ";;
+      responders="$OPTARG"
+      opts+=" -responders=${responders} ";;
     t)
       teams="$OPTARG"
       opts+=" -teams=${teams} ";;
@@ -62,8 +62,8 @@ shift $(($OPTIND-1))
 [[ "${NOTIFY_PARAMETERS:-}" == "" ]] || opts=""
 for param in ${NOTIFY_PARAMETERS:-}; do
   case ${param} in
-    "recipient:"*)
-      opts+=" -recipients=${param##*:} "
+    "responders:"*)
+      opts+=" -responders=${param##*:} "
     ;;
     "tags:"*)
       opts+=" -tags=${param##*:} "
